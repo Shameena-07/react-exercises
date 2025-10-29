@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import RecipeIdeas from "./RecipeIdeas";
+import "./App.css";
+import logo from "./pantryPal.png";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {/* Header: Logo + About */}
+     
+        <div className="logo-about">
+          <img src={logo} alt="PantryPal Logo" className="logo" />
+          <div className="text-container">
+            
+            <p className="about-text">
+              Cook smart with what you have at home. Find quick recipes by ingredients, mood, or cuisine!
+            </p>
+          </div>
+        </div>
+    
+
+      {/* Centered Search Section */}
+      <section className="search-section">
+        <RecipeIdeas />
+      </section>
+
+    
     </div>
   );
 }
-
-export default App;
