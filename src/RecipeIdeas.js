@@ -17,16 +17,76 @@ export default function RecipeIdeas() {
       return;
     }
 
-    let url = "https://www.themealdb.com/api/json/v1/1/filter.php?";
-    if (query) url += `i=${query}`;
-    else if (category) url += `c=${category}`;
-    else if (cuisine) url += `a=${cuisine}`;
+    try{
 
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      setRecipes(data.meals || []);
-    } catch (error) {
+      let ingredientMeals = [];
+      let categoryMeals = [];
+      let cuisineMeals = [];
+
+      if(query) {
+        const ingredients = query.split(",").map(i => i.trim());
+
+        let ingResList = [];
+
+        for (const ingredient of ingredients){
+          const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
+          const data = await res.json();
+          if (data.meals) {
+            if (ingResList.length === 0) {
+              ingResList = data.meals;
+            } else {
+              // Keep only common meals across ingredients
+              ingResList = ingResList.filter(m1 =>
+                data.meals.some(m2 => m2.idMeal === m1.idMeal)
+              );
+            }
+              
+          }
+        }
+
+      
+        ingredientMeals = ingResList;
+      }
+      if(category)  {
+        
+        const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`);
+        const data = await res.json();
+        categoryMeals = data.meals || [];
+      }
+      if(cuisine){
+        
+        const res = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${cuisine}`);
+        const data = await res.json();
+        cuisineMeals = data.meals || [];
+      } 
+
+      let finalMeals = [];
+
+      finalMeals = ingredientMeals.length ? ingredientMeals 
+                : categoryMeals.length ? categoryMeals
+                : cuisineMeals;
+
+    // Filter step-by-step intersection
+    if (ingredientMeals.length) {
+      finalMeals = finalMeals.filter(m1 =>
+        ingredientMeals.some(m2 => m2.idMeal === m1.idMeal)
+      );
+    }
+
+    if (categoryMeals.length) {
+      finalMeals = finalMeals.filter(m1 =>
+        categoryMeals.some(m2 => m2.idMeal === m1.idMeal)
+      );
+    }
+
+    if (cuisineMeals.length) {
+      finalMeals = finalMeals.filter(m1 =>
+        cuisineMeals.some(m2 => m2.idMeal === m1.idMeal)
+      );
+    }
+
+    setRecipes(finalMeals);
+    }catch (error) {
       console.error("Error fetching recipes:", error);
     }
   };

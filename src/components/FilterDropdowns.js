@@ -1,5 +1,5 @@
 import React from "react";
-import "../App.css";
+import "./FilterDropdowns.css";
 
 export default function FilterDropdowns({ cuisine, setCuisine, category, setCategory }) {
   return (
@@ -21,8 +21,8 @@ export default function FilterDropdowns({ cuisine, setCuisine, category, setCate
         style={{ color: category ? "black" : "gray" }}>
         <option value="">Category</option>
         <option value="Breakfast">Breakfast</option>
-        <option value="Lunch">Lunch</option>
-        <option value="Dinner">Dinner</option>
+        <option value="Seafood">Seafood</option>
+        <option value="Vegetarian">Vegetarian</option>
         <option value="Dessert">Dessert</option>
       </select>
     </div>

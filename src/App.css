@@ -9,15 +9,6 @@ body {
   text-align: center;
 }
 
-/* Header: logo + about */
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
 
 .logo-about {
   display: flex;
@@ -46,15 +37,6 @@ body {
   color: #555;
 }
 
-
-
-
-/* Search area */
-.search-container {
-  display: flex;
-  align-items: center;
-}
-
 /* About section */
 .about {
   margin-top: 40px;
@@ -68,7 +50,7 @@ body {
 }
 
 .quick-meals-btn {
-  background-color: #034e09;
+  background-color: #10b981;
   color: #fff;
   border: none;
   padding: 4px 4px;
@@ -79,63 +61,10 @@ body {
 }
 
 .quick-meals-btn:hover {
-  background-color: #023a07;
+  background-color: #f66a3f;
 }
 
-/* SearchBar */
-.search-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 1.5rem;
-}
 
-.search-container input {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  width: 250px;
-  outline: none;
-  transition: border 0.2s ease;
-}
-
-.search-container input:focus {
-  border-color: #10b981;
-}
-
-.search-container button {
-  background-color: #10b981;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.search-container button:hover {
-  background-color: #059669;
-}
-
-/* Filter Dropdowns */
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 2rem;
-}
-
-.filters select {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  outline: none;
-  transition: border 0.2s ease;
-}
-
-.filters select:focus {
-  border-color: #10b981;
-}
 
 /* Recipe Grid */
 .recipes-grid {
